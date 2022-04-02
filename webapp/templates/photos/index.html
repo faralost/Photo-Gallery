@@ -19,7 +19,7 @@
                             <p>Альбом: Без альбома</p>
                         {% endif %}
                         <div class="btn-group">
-                            <a class="btn btn-primary" href="#">Изменить</a>
+                            <a class="btn btn-primary" href="{% url 'webapp:photo_update' photo.pk %}">Изменить</a>
                             <a class="btn btn-danger" href="#">Удалить</a>
                         </div>
                     </div>

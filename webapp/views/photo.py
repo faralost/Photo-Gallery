@@ -1,4 +1,4 @@
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
 
 from webapp.forms import PhotoForm
 from webapp.models import Photo
@@ -9,6 +9,9 @@ class IndexView(ListView):
     model = Photo
     context_object_name = 'photos'
     ordering = ['-created_at']
+
+    # def get_queryset(self):
+    #     return super().get_queryset().filter(is_private=False)
 
 
 class PhotoDetailView(DetailView):
@@ -29,3 +32,13 @@ class PhotoCreateView(CreateView):
         kwargs['user'] = self.request.user
         return kwargs
 
+
+class PhotoUpdateView(UpdateView):
+    model = Photo
+    form_class = PhotoForm
+    template_name = 'photos/update.html'
+
+    def get_form_kwargs(self):
+        kwargs = super(PhotoUpdateView, self).get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs

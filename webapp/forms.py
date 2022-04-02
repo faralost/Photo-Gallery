@@ -8,7 +8,7 @@ class PhotoForm(forms.ModelForm):
         user = kwargs.pop('user', None)
         print(user)
         super(PhotoForm, self).__init__(*args, **kwargs)
-        self.fields['album'] = forms.ModelChoiceField(queryset=Album.objects.filter(author=user))
+        self.fields['album'] = forms.ModelChoiceField(queryset=Album.objects.filter(author=user), required=False)
 
     class Meta:
         model = Photo
