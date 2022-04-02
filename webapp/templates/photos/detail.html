@@ -13,7 +13,7 @@
                     <p class="card-text">Автор: {{ photo.author }}</p>
                     <p class="card-text">Дата: {{ photo.created_at }}</p>
                     {% if photo.album %}
-                        <p>Альбом: <a href="#">{{ photo.album }}</a></p>
+                        <p>Альбом: <a href="{% url 'webapp:album_detail' photo.album.pk %}">{{ photo.album }}</a></p>
                     {% else %}
                         <p>Альбом: Без альбома</p>
                     {% endif %}

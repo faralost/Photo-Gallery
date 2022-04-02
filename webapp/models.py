@@ -10,7 +10,8 @@ class Photo(models.Model):
     caption = models.CharField(max_length=100, verbose_name='Подпись')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='photos', verbose_name='Автор')
-    album = models.ForeignKey('webapp.Album', on_delete=models.CASCADE, null=True, blank=True, verbose_name='Альбом')
+    album = models.ForeignKey('webapp.Album', on_delete=models.CASCADE, null=True, blank=True,
+                              verbose_name='Альбом', related_name='photos')
     favorites = models.ManyToManyField(User, related_name='favorited_photos', blank=True)
     is_private = models.BooleanField(default=False, verbose_name='Приватный ли')
 
