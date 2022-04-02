@@ -37,6 +37,13 @@ class UserDetailView(LoginRequiredMixin, DetailView):
     context_object_name = 'user_obj'
     slug_field = 'profile__slug'
 
+    def get_context_data(self, **kwargs):
+        photos = self.object.photos.all()
+        albums = self.object.albums.all()
+        kwargs['photos'] = photos
+        kwargs['albums'] = albums
+        return super().get_context_data(**kwargs)
+
 
 class UsersListView(PermissionRequiredMixin, ListView):
     template_name = 'users_list.html'

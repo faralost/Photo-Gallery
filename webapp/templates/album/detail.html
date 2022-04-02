@@ -24,27 +24,7 @@
     </div>
     <div class="row my-3">
         {% for photo in album.photos.all %}
-            <div class="col-12 col-md-4 col-lg-4">
-                <div class="card mb-3">
-                    <div class="card-body">
-                        <h5 class="card-title"><a
-                                href="{{ photo.get_absolute_url }}">{{ photo.caption }}</a></h5>
-                        <img src="{{ photo.image.url }}" class="card-img-top" alt="#">
-                        <p class="card-text">Автор: {{ photo.author }}</p>
-                        <p class="card-text">Дата: {{ photo.created_at }}</p>
-                        {% if photo.album %}
-                            <p>Альбом: <a href="{% url 'webapp:album_detail' photo.album.pk %}">{{ photo.album }}</a>
-                            </p>
-                        {% else %}
-                            <p>Альбом: Без альбома</p>
-                        {% endif %}
-                        <div class="btn-group">
-                            <a class="btn btn-primary" href="{% url 'webapp:photo_update' photo.pk %}">Изменить</a>
-                            <a class="btn btn-danger" href="{% url 'webapp:photo_delete' photo.pk %}">Удалить</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {% include 'partial/photos_list.html' %}
         {% empty %}
             <p>альбом пока пуст...</p>
         {% endfor %}
