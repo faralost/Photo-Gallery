@@ -1,0 +1,166 @@
+[
+{
+  "model": "webapp.photo",
+  "pk": 2,
+  "fields": {
+    "image": "images/310519.jpg",
+    "caption": "Evangelion",
+    "created_at": "2022-04-02T05:43:58.780Z",
+    "author": 2,
+    "album": null,
+    "is_private": false,
+    "token": null,
+    "favorites": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "webapp.photo",
+  "pk": 3,
+  "fields": {
+    "image": "images/606225.jpg",
+    "caption": "Levi Accerman",
+    "created_at": "2022-04-02T05:45:30.473Z",
+    "author": 2,
+    "album": 1,
+    "is_private": false,
+    "token": null,
+    "favorites": [
+      2,
+      3
+    ]
+  }
+},
+{
+  "model": "webapp.photo",
+  "pk": 4,
+  "fields": {
+    "image": "images/804372.png",
+    "caption": "Ervin Smith",
+    "created_at": "2022-04-02T05:46:05.248Z",
+    "author": 2,
+    "album": 1,
+    "is_private": false,
+    "token": null,
+    "favorites": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "webapp.photo",
+  "pk": 5,
+  "fields": {
+    "image": "images/1124354.jpg",
+    "caption": "Sukuna",
+    "created_at": "2022-04-02T07:25:23.599Z",
+    "author": 1,
+    "album": 2,
+    "is_private": false,
+    "token": null,
+    "favorites": [
+      3
+    ]
+  }
+},
+{
+  "model": "webapp.photo",
+  "pk": 6,
+  "fields": {
+    "image": "images/641968.jpg",
+    "caption": "Pikachu1",
+    "created_at": "2022-04-02T07:30:28.630Z",
+    "author": 2,
+    "album": null,
+    "is_private": true,
+    "token": "ktC9CM9wm4ZFzbQfYD4RLbxe9Wo3ISF5e-Cyg49zb44",
+    "favorites": []
+  }
+},
+{
+  "model": "webapp.photo",
+  "pk": 9,
+  "fields": {
+    "image": "images/1140982.jpg",
+    "caption": "Satoru Godjo",
+    "created_at": "2022-04-02T09:07:33.215Z",
+    "author": 1,
+    "album": 2,
+    "is_private": true,
+    "token": null,
+    "favorites": []
+  }
+},
+{
+  "model": "webapp.photo",
+  "pk": 10,
+  "fields": {
+    "image": "images/1000030_bBBYZb6.jpg",
+    "caption": "Tanjiro Camado",
+    "created_at": "2022-04-02T10:17:17.270Z",
+    "author": 3,
+    "album": 5,
+    "is_private": false,
+    "token": "joDwsvd9taUkReQ33Sc0JHuoLY3KQkDl0T2En0tso4I",
+    "favorites": [
+      1,
+      3
+    ]
+  }
+},
+{
+  "model": "webapp.album",
+  "pk": 1,
+  "fields": {
+    "name": "Attack of Titans",
+    "description": "Popular anime series",
+    "author": 2,
+    "created_at": "2022-04-02T05:45:07.414Z",
+    "is_private": false,
+    "favorites": [
+      3
+    ]
+  }
+},
+{
+  "model": "webapp.album",
+  "pk": 2,
+  "fields": {
+    "name": "Jujutsu Kaisen",
+    "description": "",
+    "author": 1,
+    "created_at": "2022-04-02T06:53:26.867Z",
+    "is_private": false,
+    "favorites": []
+  }
+},
+{
+  "model": "webapp.album",
+  "pk": 3,
+  "fields": {
+    "name": "Others",
+    "description": "some random photos",
+    "author": 1,
+    "created_at": "2022-04-02T08:16:17.287Z",
+    "is_private": false,
+    "favorites": []
+  }
+},
+{
+  "model": "webapp.album",
+  "pk": 5,
+  "fields": {
+    "name": "Demon Slayer",
+    "description": "",
+    "author": 3,
+    "created_at": "2022-04-02T10:16:50.719Z",
+    "is_private": false,
+    "favorites": [
+      3
+    ]
+  }
+}
+]
