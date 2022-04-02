@@ -40,8 +40,13 @@ class UserDetailView(LoginRequiredMixin, DetailView):
     slug_field = 'profile__slug'
 
     def get_context_data(self, **kwargs):
-        photos = self.object.photos.all()
-        albums = self.object.albums.all()
+        photos = self.object.photos.filter(Q(author=self.request.user) | Q(is_private=False)).annotate(
+            is_favorited=Exists(Photo.favorites.through.objects.filter(
+                user_id=self.request.user.pk,
+                photo_id=OuterRef('pk')
+            ))
+        )
+        albums = self.object.albums.filter(Q(author=self.request.user) | Q(is_private=False))
         kwargs['photos'] = photos
         kwargs['albums'] = albums
         return super().get_context_data(**kwargs)
