@@ -19,12 +19,21 @@
                     {% endif %}
                     <div class="btn-group">
                         {% if perms.webapp.change_photo or request.user == photo.author %}
-                        <a class="btn btn-primary" href="{% url 'webapp:photo_update' photo.pk %}">Изменить</a>
+                            <a class="btn btn-primary" href="{% url 'webapp:photo_update' photo.pk %}">Изменить</a>
                         {% endif %}
                         {% if perms.webapp.delete_photo or request.user == photo.author %}
-                        <a class="btn btn-danger" href="{% url 'webapp:photo_delete' photo.pk %}">Удалить</a>
+                            <a class="btn btn-danger" href="{% url 'webapp:photo_delete' photo.pk %}">Удалить</a>
                         {% endif %}
                     </div>
+                    {% if not photo.token %}
+                    {% if request.user == photo.author %}
+                        <a class="btn btn-success" href="{% url 'webapp:photo_generate-token' photo.pk%}">Сгенерировать ссылку</a>
+                    {% endif %}
+                    {% else %}
+                        {% if request.user == photo.author %}
+                        <p>Ваша ссылка: <a href="http://localhost:8000/photo/6/{{ photo.token }}">http://localhost:8000/photo/6/{{ photo.token }}</a></p>
+                        {% endif %}
+                    {% endif %}
                 </div>
             </div>
         </div>

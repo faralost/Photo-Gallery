@@ -12,10 +12,10 @@ class PhotoForm(forms.ModelForm):
 
     class Meta:
         model = Photo
-        exclude = ['author', 'favorites']
+        exclude = ['author', 'favorites', 'token']
 
 
 class AlbumForm(forms.ModelForm):
     class Meta:
         model = Album
-        exclude = ['author']
+        exclude = ['author', 'favorites']

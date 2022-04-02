@@ -14,6 +14,7 @@ class Photo(models.Model):
                               verbose_name='Альбом', related_name='photos')
     favorites = models.ManyToManyField(User, related_name='favorited_photos', blank=True)
     is_private = models.BooleanField(default=False, verbose_name='Приватный ли')
+    token = models.CharField(unique=True, max_length=45, null=True, default=None, verbose_name='Токен')
 
     def __str__(self):
         return f'{self.caption}'

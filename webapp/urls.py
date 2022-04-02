@@ -9,7 +9,8 @@ from webapp.views.photo import (IndexView,
                                 PhotoDetailView,
                                 PhotoCreateView,
                                 PhotoUpdateView,
-                                PhotoDeleteView)
+                                PhotoDeleteView,
+                                generate_token)
 
 app_name = 'webapp'
 
@@ -19,6 +20,8 @@ urlpatterns = [
     path('photo/add/', PhotoCreateView.as_view(), name='photo_create'),
     path('photo/<int:pk>/update/', PhotoUpdateView.as_view(), name='photo_update'),
     path('photo/<int:pk>/delete/', PhotoDeleteView.as_view(), name='photo_delete'),
+    path('photo/<int:pk>/generate-token/', generate_token, name='photo_generate-token'),
+    path('photo/<int:pk>/<token>/', PhotoDetailView.as_view(), name='photo_detail'),
     path('album/<int:pk>/', AlbumDetailView.as_view(), name='album_detail'),
     path('album/add/', AlbumCreateView.as_view(), name='album_create'),
     path('album/<int:pk>/update/', AlbumUpdateView.as_view(), name='album_update'),
