@@ -41,8 +41,6 @@ class PhotoDetailView(LoginRequiredMixin, DetailView):
 
     def get(self, request, *args, **kwargs):
         token = kwargs.get('token')
-        print(token)
-        print(self.get_object().token)
         if token:
             if self.get_object().token != token:
                 return HttpResponse('У вас нет доступа к этому ресурсу! Возможно ваш токен невалиден', status=400)
