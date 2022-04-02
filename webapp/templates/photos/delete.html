@@ -3,7 +3,7 @@
 {% block title %}Удаление{% endblock %}
 
 {% block content %}
-    <h1>Вы уверены, что хотите удалить фото "{{ photo.caption }}"</h1>
+    <h1>Вы уверены, что хотите удалить фото "{{ photo.caption }}"?</h1>
     <form action="{% url "webapp:photo_delete" photo.pk %}" method="post">
         {% csrf_token %}
         <div class="btn-group">

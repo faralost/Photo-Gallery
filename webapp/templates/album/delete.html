@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Удаление{% endblock %}
+
+{% block content %}
+    <h1>Вы уверены, что хотите удалить альбом "{{ album.name }}"?</h1>
+    <h1>ВСЕ ФОТОГРАФИИ ИЗ ЭТОГО АЛЬБОМА УДАЛЯТСЯ ТОЖЕ!!!</h1>
+    <form action="{% url "webapp:album_delete" album.pk %}" method="post">
+        {% csrf_token %}
+        <div class="btn-group">
+            <button class="btn btn-danger" type="submit">Да</button>
+            <a class="btn btn-primary" href="{% url 'webapp:album_detail' album.pk %}">Отмена</a>
+        </div>
+    </form>
+{% endblock %}

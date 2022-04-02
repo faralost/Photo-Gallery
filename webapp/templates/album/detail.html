@@ -18,7 +18,7 @@
             {% endif %}
             <div class="btn-group">
                 <a class="btn btn-primary" href="{% url 'webapp:album_update' album.pk %}">Изменить</a>
-{#                <a class="btn btn-danger" href="{% url 'webapp:photo_delete' photo.pk %}">Удалить</a>#}
+                <a class="btn btn-danger" href="{% url 'webapp:album_delete' album.pk %}">Удалить</a>
             </div>
         </div>
     </div>
