@@ -11,7 +11,7 @@ async function onClick(event) {
 }
 
 function onLoad() {
-    const buttons = document.querySelectorAll('.photo-favorite')
+    const buttons = document.querySelectorAll('.favorite')
     buttons.forEach(function (currentBtn) {
         currentBtn.addEventListener('click', onClick)
     })

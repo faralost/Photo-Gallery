@@ -18,12 +18,25 @@
             {% endif %}
             <div class="btn-group">
                 {% if perms.webapp.change_album or request.user == album.author %}
-                <a class="btn btn-primary" href="{% url 'webapp:album_update' album.pk %}">Изменить</a>
+                    <a class="btn btn-primary" href="{% url 'webapp:album_update' album.pk %}">Изменить</a>
                 {% endif %}
                 {% if perms.webapp.delete_album or request.user == album.author %}
-                <a class="btn btn-danger" href="{% url 'webapp:album_delete' album.pk %}">Удалить</a>
+                    <a class="btn btn-danger" href="{% url 'webapp:album_delete' album.pk %}">Удалить</a>
                 {% endif %}
             </div>
+            {% if user.is_authenticated %}
+                {% if album_is_favorited %}
+                    <button class="favorite btn btn-info"
+                            data-photo-url="{% url 'webapp:album_favorite_view' album.pk %}">
+                        удалить из избранного
+                    </button>
+                {% else %}
+                    <button class="favorite btn btn-info"
+                            data-photo-url="{% url 'webapp:album_favorite_view' album.pk %}">
+                        добавить в избранное
+                    </button>
+                {% endif %}
+            {% endif %}
         </div>
     </div>
     <div class="row my-3">

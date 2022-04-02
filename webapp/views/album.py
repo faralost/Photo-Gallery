@@ -1,10 +1,13 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-from django.db.models import Q
+from django.db.models import Q, Exists, OuterRef
+from django.http import JsonResponse
+from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
+from django.views import View
 from django.views.generic import DetailView, CreateView, UpdateView, DeleteView
 
 from webapp.forms import AlbumForm
-from webapp.models import Album
+from webapp.models import Album, Photo
 
 
 class AlbumDetailView(LoginRequiredMixin, DetailView):
@@ -12,9 +15,17 @@ class AlbumDetailView(LoginRequiredMixin, DetailView):
     template_name = 'album/detail.html'
 
     def get_context_data(self, **kwargs):
-        contex = super().get_context_data(**kwargs)
-        contex['album_photos'] = self.object.photos.filter(Q(author=self.request.user) | Q(is_private=False))
-        return contex
+        context = super().get_context_data(**kwargs)
+        context['album_photos'] = self.object.photos.filter(Q(author=self.request.user) | Q(is_private=False)).annotate(
+            is_favorited=Exists(Photo.favorites.through.objects.filter(
+                user_id=self.request.user.pk,
+                photo_id=OuterRef('pk')
+            )))
+        is_favorited = False
+        if self.object.favorites.filter(id=self.request.user.pk).exists():
+            is_favorited = True
+        context['album_is_favorited'] = is_favorited
+        return context
 
 
 class AlbumCreateView(LoginRequiredMixin, CreateView):
@@ -44,3 +55,18 @@ class AlbumDeleteView(PermissionRequiredMixin, DeleteView):
 
     def has_permission(self):
         return super().has_permission() or self.request.user == self.get_object().author
+
+
+class AlbumFavoritesView(LoginRequiredMixin, View):
+    def post(self, request, *args, **kwargs):
+        album = get_object_or_404(Album, pk=kwargs['pk'])
+        if album.favorites.filter(id=request.user.pk).exists():
+            album.favorites.remove(request.user)
+            value = 'добавить в избранное'
+        else:
+            album.favorites.add(request.user)
+            value = 'удалить из избранного'
+        data = {
+            "value": value
+        }
+        return JsonResponse(data, safe=False)

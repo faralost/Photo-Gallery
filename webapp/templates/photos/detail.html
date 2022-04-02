@@ -28,12 +28,12 @@
 
                     {% if user.is_authenticated %}
                         {% if photo_is_favorited %}
-                            <button class="photo-favorite btn btn-info"
+                            <button class="favorite btn btn-info"
                                     data-photo-url="{% url 'webapp:photo_favorite_view' photo.pk %}">
                                 удалить из избранного
                             </button>
                         {% else %}
-                            <button class="photo-favorite btn btn-info"
+                            <button class="favorite btn btn-info"
                                     data-photo-url="{% url 'webapp:photo_favorite_view' photo.pk %}">
                                 добавить в избранное
                             </button>
