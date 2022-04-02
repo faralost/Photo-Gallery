@@ -66,14 +66,14 @@
         </div>
 
         <h3>Фотогафии добавленные вами:</h3>
-        {% for photo in user_obj.photos.all %}
+        {% for photo in photos %}
             {% include 'partial/photos_list.html' %}
         {% empty %}
             <p>Вы еще не добавляли фоток...</p>
         {% endfor %}
 
         <h3>Фотогафии добавленные вами в избранное:</h3>
-        {% for photo in user_obj.favorited_photos.all %}
+        {% for photo in fav_photos %}
             {% include 'partial/photos_list.html' %}
         {% empty %}
             <p>Вы еще не добавляли фоток в избранное...</p>
