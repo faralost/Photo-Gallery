@@ -47,7 +47,7 @@
                         {% endif %}
                     {% else %}
                         {% if request.user == photo.author %}
-                            <p>Ваша ссылка: <a href="http://localhost:8000/photo/6/{{ photo.token }}">http://localhost:8000/photo/6/{{ photo.token }}</a>
+                            <p>Ваша ссылка: <a href="http://localhost:8000/photo/{{ photo.pk }}/{{ photo.token }}">http://localhost:8000/photo/{{ photo.pk }}/{{ photo.token }}</a>
                             </p>
                         {% endif %}
                     {% endif %}
