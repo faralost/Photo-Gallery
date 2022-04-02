@@ -27,7 +27,7 @@
         </div>
     </div>
     <div class="row my-3">
-        {% for photo in album.photos.all %}
+        {% for photo in album_photos %}
             {% include 'partial/photos_list.html' %}
         {% empty %}
             <p>альбом пока пуст...</p>

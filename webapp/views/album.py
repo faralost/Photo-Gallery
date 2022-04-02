@@ -1,4 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.db.models import Q
 from django.urls import reverse_lazy
 from django.views.generic import DetailView, CreateView, UpdateView, DeleteView
 
@@ -9,6 +10,11 @@ from webapp.models import Album
 class AlbumDetailView(LoginRequiredMixin, DetailView):
     model = Album
     template_name = 'album/detail.html'
+
+    def get_context_data(self, **kwargs):
+        contex = super().get_context_data(**kwargs)
+        contex['album_photos'] = self.object.photos.filter(Q(author=self.request.user) | Q(is_private=False))
+        return contex
 
 
 class AlbumCreateView(LoginRequiredMixin, CreateView):

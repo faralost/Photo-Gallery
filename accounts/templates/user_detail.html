@@ -54,12 +54,24 @@
                 <p>Вы пока не добавили ни один альбом...</p>
             {% endfor %}
         </div>
+
+        <h3>Список альбомов добавленные вами в избранное:</h3>
+        <div class="list-group">
+            {% for album in user_obj.favorited_albums.all %}
+                <a href="{% url 'webapp:album_detail' album.pk %}"
+                   class="list-group-item list-group-item-action">{{ album.name }}</a>
+            {% empty %}
+                <p>Вы пока не добавили ни один альбом в избранное...</p>
+            {% endfor %}
+        </div>
+
         <h3>Фотогафии добавленные вами:</h3>
         {% for photo in user_obj.photos.all %}
             {% include 'partial/photos_list.html' %}
         {% empty %}
             <p>Вы еще не добавляли фоток...</p>
         {% endfor %}
+
         <h3>Фотогафии добавленные вами в избранное:</h3>
         {% for photo in user_obj.favorited_photos.all %}
             {% include 'partial/photos_list.html' %}

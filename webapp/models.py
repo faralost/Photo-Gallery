@@ -28,6 +28,7 @@ class Album(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='albums', verbose_name='Автор')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     is_private = models.BooleanField(default=False, verbose_name='Приватный ли')
+    favorites = models.ManyToManyField(User, related_name='favorited_albums', blank=True)
 
     def __str__(self):
         return f'{self.name}'
