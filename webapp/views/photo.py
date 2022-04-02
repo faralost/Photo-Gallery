@@ -1,5 +1,6 @@
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView
 
+from webapp.forms import PhotoForm
 from webapp.models import Photo
 
 
@@ -13,3 +14,18 @@ class IndexView(ListView):
 class PhotoDetailView(DetailView):
     template_name = 'photos/detail.html'
     model = Photo
+
+
+class PhotoCreateView(CreateView):
+    template_name = 'photos/create.html'
+    form_class = PhotoForm
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+    def get_form_kwargs(self):
+        kwargs = super(PhotoCreateView, self).get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
+

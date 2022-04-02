@@ -30,6 +30,8 @@
                 {% for user in photo.favorites.all %}
                     <a href="{% url 'accounts:detail_profile' user.profile.slug %}"
                        class="list-group-item list-group-item-action">{{ user }}</a>
+                {% empty %}
+                    <p>Никто не добавлял это фото в избранное пока...</p>
                 {% endfor %}
             </div>
         </div>
