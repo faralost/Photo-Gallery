@@ -17,8 +17,12 @@
                 <p class="card-text">без описания...</p>
             {% endif %}
             <div class="btn-group">
+                {% if perms.webapp.change_album or request.user == album.author %}
                 <a class="btn btn-primary" href="{% url 'webapp:album_update' album.pk %}">Изменить</a>
+                {% endif %}
+                {% if perms.webapp.delete_album or request.user == album.author %}
                 <a class="btn btn-danger" href="{% url 'webapp:album_delete' album.pk %}">Удалить</a>
+                {% endif %}
             </div>
         </div>
     </div>
