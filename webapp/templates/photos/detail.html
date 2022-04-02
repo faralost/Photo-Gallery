@@ -25,13 +25,30 @@
                             <a class="btn btn-danger" href="{% url 'webapp:photo_delete' photo.pk %}">Удалить</a>
                         {% endif %}
                     </div>
-                    {% if not photo.token %}
-                    {% if request.user == photo.author %}
-                        <a class="btn btn-success" href="{% url 'webapp:photo_generate-token' photo.pk%}">Сгенерировать ссылку</a>
+
+                    {% if user.is_authenticated %}
+                        {% if photo_is_favorited %}
+                            <button class="photo-favorite btn btn-info"
+                                    data-photo-url="{% url 'webapp:photo_favorite_view' photo.pk %}">
+                                удалить из избранного
+                            </button>
+                        {% else %}
+                            <button class="photo-favorite btn btn-info"
+                                    data-photo-url="{% url 'webapp:photo_favorite_view' photo.pk %}">
+                                добавить в избранное
+                            </button>
+                        {% endif %}
                     {% endif %}
+
+                    {% if not photo.token %}
+                        {% if request.user == photo.author %}
+                            <a class="btn btn-success" href="{% url 'webapp:photo_generate-token' photo.pk %}">Сгенерировать
+                                ссылку</a>
+                        {% endif %}
                     {% else %}
                         {% if request.user == photo.author %}
-                        <p>Ваша ссылка: <a href="http://localhost:8000/photo/6/{{ photo.token }}">http://localhost:8000/photo/6/{{ photo.token }}</a></p>
+                            <p>Ваша ссылка: <a href="http://localhost:8000/photo/6/{{ photo.token }}">http://localhost:8000/photo/6/{{ photo.token }}</a>
+                            </p>
                         {% endif %}
                     {% endif %}
                 </div>
