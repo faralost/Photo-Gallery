@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.db import models
+from django.urls import reverse
 
 User = get_user_model()
 
@@ -14,6 +15,9 @@ class Photo(models.Model):
 
     def __str__(self):
         return f'{self.caption}'
+
+    def get_absolute_url(self):
+        return reverse('webapp:photo_detail', kwargs={'pk': self.pk})
 
 
 class Album(models.Model):

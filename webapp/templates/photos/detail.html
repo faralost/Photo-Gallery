@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}Детальный просмотр фото{% endblock %}
+
+{% block content %}
+    <br>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">{{ photo.caption }}</h5>
+                    <img src="{{ photo.image.url }}" class="card-img-top" alt="#">
+                    <p class="card-text">Автор: {{ photo.author }}</p>
+                    <p class="card-text">Дата: {{ photo.created_at }}</p>
+                    {% if photo.album %}
+                        <p>Альбом: <a href="#">{{ photo.album }}</a></p>
+                    {% else %}
+                        <p>Альбом: Без альбома</p>
+                    {% endif %}
+                    <div class="btn-group">
+                        <a class="btn btn-primary" href="#">Изменить</a>
+                        <a class="btn btn-danger" href="#">Удалить</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <h5>Список пользователей у кого это фото в избранном:</h5>
+            <div class="list-group">
+                {% for user in photo.favorites.all %}
+                    <a href="{% url 'accounts:detail_profile' user.profile.slug %}"
+                       class="list-group-item list-group-item-action">{{ user }}</a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

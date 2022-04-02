@@ -9,7 +9,7 @@
                 <div class="card mb-3">
                     <div class="card-body">
                         <h5 class="card-title"><a
-                                href="#">{{ photo.caption }}</a></h5>
+                                href="{{ photo.get_absolute_url }}">{{ photo.caption }}</a></h5>
                         <img src="{{ photo.image.url }}" class="card-img-top" alt="#">
                         <p class="card-text">Автор: {{ photo.author }}</p>
                         <p class="card-text">Дата: {{ photo.created_at }}</p>
@@ -19,14 +19,8 @@
                             <p>Альбом: Без альбома</p>
                         {% endif %}
                         <div class="btn-group">
-{#                            {% if perms.webapp.change_product %}#}
-{#                                <a class="btn btn-primary"#}
-{#                                   href="{% url 'webapp:product_update' product.pk %}">Изменить</a>#}
-{#                            {% endif %}#}
-{#                            {% if perms.webapp.delete_product %}#}
-{#                                <a class="btn btn-danger"#}
-{#                                   href="{% url 'webapp:product_delete' product.pk %}">Удалить</a>#}
-{#                            {% endif %}#}
+                            <a class="btn btn-primary" href="#">Изменить</a>
+                            <a class="btn btn-danger" href="#">Удалить</a>
                         </div>
                     </div>
                 </div>
