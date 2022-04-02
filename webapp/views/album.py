@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.views.generic import DetailView, CreateView, UpdateView, DeleteView
 
@@ -5,12 +6,12 @@ from webapp.forms import AlbumForm
 from webapp.models import Album
 
 
-class AlbumDetailView(DetailView):
+class AlbumDetailView(LoginRequiredMixin, DetailView):
     model = Album
     template_name = 'album/detail.html'
 
 
-class AlbumCreateView(CreateView):
+class AlbumCreateView(LoginRequiredMixin, CreateView):
     template_name = 'album/create.html'
     form_class = AlbumForm
 

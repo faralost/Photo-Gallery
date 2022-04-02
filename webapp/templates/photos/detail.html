@@ -18,7 +18,9 @@
                         <p>Альбом: Без альбома</p>
                     {% endif %}
                     <div class="btn-group">
+                        {% if perms.webapp.change_photo or request.user == photo.author %}
                         <a class="btn btn-primary" href="{% url 'webapp:photo_update' photo.pk %}">Изменить</a>
+                        {% endif %}
                         <a class="btn btn-danger" href="{% url 'webapp:photo_delete' photo.pk %}">Удалить</a>
                     </div>
                 </div>

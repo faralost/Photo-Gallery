@@ -2,6 +2,7 @@
 
 {% block title %}Главная{% endblock %}
 
+{% if user.authenticated %}
 {% block content %}
     <div class="row my-3">
     {% for photo in photos %}
@@ -9,3 +10,4 @@
     {% endfor %}
 </div>
 {% endblock %}
+{% endif %}
