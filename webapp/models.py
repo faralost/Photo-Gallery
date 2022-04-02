@@ -10,6 +10,7 @@ class Photo(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='photos', verbose_name='Автор')
     album = models.ForeignKey('webapp.Album', on_delete=models.CASCADE, null=True, blank=True, verbose_name='Альбом')
+    favorites = models.ManyToManyField(User, related_name='favorited_photos')
 
     def __str__(self):
         return f'{self.caption}'
