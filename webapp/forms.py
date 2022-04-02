@@ -13,3 +13,9 @@ class PhotoForm(forms.ModelForm):
     class Meta:
         model = Photo
         exclude = ['author', 'favorites']
+
+
+class AlbumForm(forms.ModelForm):
+    class Meta:
+        model = Album
+        exclude = ['author']

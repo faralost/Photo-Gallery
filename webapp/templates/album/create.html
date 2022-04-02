@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}Добавление альбома{% endblock %}
+
+{% block content %}
+    <h1>Добавить альбом</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% include 'partial/form.html' with button_text="Добавить" %}
+    </form>
+
+{% endblock %}
